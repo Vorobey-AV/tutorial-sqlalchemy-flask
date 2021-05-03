@@ -1,0 +1,28 @@
+<html>
+<body>
+<h1>Books</h1>
+<a href="{{url_for('newBook')}}">
+    <button>Добавить книгу</button>
+</a>
+<ol>
+
+    {% for book_genre in books_genre %}
+    <h3>Жанр: {{book_genre.genre}}</h3>
+
+    {% for book in books %}
+        {% if book_genre.genre == book.genre%}
+        <li> {{book.title}} — {{book.author}}</li>
+        <p>Жанр - {{book.genre}}</p>
+        <a href="{{url_for('editBook', book_id = book.id )}}">
+            Изменить
+        </a>
+        <a href="{{url_for('deleteBook', book_id = book.id )}}" style="margin-left: 10px;">
+            Удалить
+        </a>
+        <br> <br>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+</ol>
+</body>
+</html>
